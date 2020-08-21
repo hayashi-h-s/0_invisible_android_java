@@ -44,16 +44,14 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         // テキスト変更後に変更されたテキストを取り出す
         String inputStr= s.toString();
 
-        // 文字長をカウントして８文字を超えると「オーバー」とする
+        // 0が入力されている時は、消える。それ以外は表示
+        textView.setText(inputStr);
+        if (inputStr.equals("0")) {
+            textView.setVisibility(View.INVISIBLE);
+        } else {
+            textView.setVisibility(View.VISIBLE);
+        }
 
-        if(inputStr.length() >1){
-            Toast.makeText(getApplicationContext(), "10000文字以内で入力してください。", Toast.LENGTH_SHORT).show();
-            textView.setText(inputStr);
-            button.setEnabled(false);
-        }
-        else{
-            button.setEnabled(true);
-        }
     }
 
     @Override
